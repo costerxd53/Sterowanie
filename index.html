@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Sterowanie</title>
+    <script>
+    function cmd(str) {
+    if (window.XMLHttpRequest) {
+      xmlhttp=new XMLHttpRequest();
+    } else {
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function() {
+      if (this.readyState==4 && this.status==200) {
+        document.getElementById("response").innerHTML=this.responseText;
+      }
+      else {
+        document.getElementById("response").innerHTML= "<c>Brak Połączenia z Serwerem!</c>"
+      }
+    }
+    xmlhttp.open("GET","http://77.252.137.224/arduino/index.php?device="+str,true);
+    xmlhttp.send();
+  }
+    </script>
+</head>
+
+<body>
+
+   <div id="container">
+    <h1></h1>
+    <div class="type-1">
+  <div id="b">
+    <a id="1" onclick='cmd("1")'  class="btn btn-1">
+      <span class="txt">Lampki </span>
+      <span class="round"><i class="fa fa-chevron-right"></i></span>
+    </a>
+  </div>
+    </div>
+    <div id="b">
+    <a onclick='cmd("2")' class="btn btn-1">
+      <span class="txt">Światło</span>
+      <span class="round"><i class="fa fa-chevron-right"></i></span>
+    </a>
+  </div>
+  <div id="response"></div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+</body>
+</html>
